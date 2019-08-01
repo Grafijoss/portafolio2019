@@ -1,0 +1,179 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+	display: block;
+}
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+    display: none;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+button {
+  border: 0;
+  padding: 0;
+}
+
+body {
+	height: 100%;;
+	position: absolute;
+	width: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* My face */
+
+.wrrp-myface {
+	bottom: 0;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	width: 100%;
+}
+
+.wrrp-myface1 {
+	left: 50%;
+  position: absolute;
+	transform: translate(-50%, -50%);
+  top: 50%;
+	max-width: 450px;
+	width: 80%;
+}
+
+.my-face {
+  // left: 50%;
+  // position: absolute;
+	// transform: translate(-50%, -50%);
+  // top: 50%;
+	// max-width: 450px;
+	// width: 80%;
+}
+
+/* Menu Icons */
+
+.menu-icons {
+	button {
+		background: transparent;
+		border-radius: 50%;
+		cursor: pointer;
+		height: 70px;
+		position: absolute;
+		overflow: hidden;
+		width: 70px;
+		&:hover {
+			outline:0;
+		}
+		.icon {
+			height: 100px;
+			width: 100px;
+			opacity: 0;
+		}
+		i {
+			font-size: 30px;
+			color: white;
+			opacity: 0;
+			position: relative;
+			z-index: 2;
+		}
+		.cover {
+			border-radius: 50%;
+			position: absolute;
+			background: #00aea7;
+			height: 0;
+			left: 50%;
+			top: 50%;
+			width: 0;
+		}
+		&:nth-child(1) {
+			left: 50px;
+			top: 50px;
+		}
+		&:nth-child(2) {
+			right: 50px;
+			top: 50px;
+		}
+		&:nth-child(3) {
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: 20px;
+		}
+	}
+}
+
+.wrrp-info-left {
+	background: yellow;
+	height: 100%;
+	left: -50%;
+	position: fixed;
+	top: 0;
+	width: 50%;
+}

@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	  <script src = "pixi.js"></script>
+	  
+	</head>	
+    <body>
+		
+	 <script>
+		 //alias
+		var Container = PIXI.Container; 
+		var autoDetectRenderer = PIXI.autoDetectRenderer; 
+		var loader = PIXI.loader;
+        var resources = PIXI.loader.resources;
+        var Sprite = PIXI.Sprite;
+		var TextureCache = PIXI.TextureCache;
+		var Texture = PIXI.Texture;
+		  
+		 
+		var stage = new Container(); 
+		 
+		var renderer = autoDetectRenderer(512,512);
+		 
+		document.body.appendChild(renderer.view);
+		 
+		renderer.view.style.border = "2px solid black";
+		renderer.backgroundColor = 0x00ffff;
+		
+		loader
+			.add("images/angry.png")
+			.load(setup);
+		var ave;
+		var estado;
+		 
+		function setup(){
+			ave = new Sprite(resources["images/angry.png"].texture);
+		    ave.x = renderer.view.width/2 - ave.width/2;
+			ave.y = renderer.view.height/2 - ave.height/2;
+			ave.vx = 0;
+			ave.vy = 0;
+			stage.addChild(ave);
+			
+			var left = teclado(37), 
+		    up = teclado(38),
+			right = teclado(39),
+			down = teclado(40);
+			
+			left.press = () => {
+            
+             ave.vx = -5;
+             ave.vy = 0;
+            };
+			
+			
+            left.release = () => {
+            
+             if (!right.isDown && ave.vy === 0) {
+             ave.vx = 0;
+              }
+            };
+			
+			//Up
+           up.press = () => {
+		   ave.vy = -5;
+		   ave.vx = 0;
+		   }; 
+			
+		   up.release = () => {
+		    if (!down.isDown && ave.vx === 0) {
+		    ave.vy = 0;
+		    }
+		   };
+			
+			//Right
+		   right.press = () => {
+		   ave.vx = 5;
+		   ave.vy = 0;
+		   };
+			
+		   right.release = () => {
+		   if (!left.isDown && ave.vy === 0) {
+		   ave.vx = 0;
+		   }
+		  };
+
+			//Down
+		   down.press = () => {
+		   ave.vy = 5;
+		   ave.vx = 0;
+		   };
+		  down.release = () => {
+		   if (!up.isDown && ave.vx === 0) {
+		   ave.vy = 0;
+		   }
+		  };
+			
+			estado = play;
+			gameLoop();
+			
+		}
+		 
+		 
+		 
+		 function play(){
+			ave.x += ave.vx;
+			ave.y += ave.vy;
+		} 
+		 
+		function gameLoop(){
+			requestAnimationFrame(gameLoop);
+			estado();
+			renderer.render(stage);
+		} 
+		 
+		function teclado(keyCode){
+			var key = {};
+             key.code = keyCode;
+             key.isDown = false;
+             key.isUp = true;
+             key.press = undefined;
+             key.release = undefined;
+			
+			
+          
+             //Funcion que responde al evento keydown
+             key.downHandler = event => {
+		       if (event.keyCode === key.code) {
+                if (key.isUp && key.press) key.press();
+                 key.isDown = true;
+                 key.isUp = false;
+               }
+             event.preventDefault();
+            };
+           //Funcion que responde al evento keyup
+           key.upHandler = event => {
+            if (event.keyCode === key.code) {
+                if (key.isDown && key.release) key.release();
+                key.isDown = false;
+                key.isUp = true;
+            }
+           event.preventDefault();
+          };
+          window.addEventListener("keydown", key.downHandler.bind(key), false);
+          window.addEventListener("keyup", key.upHandler.bind(key), false);
+         //Return the `key` object
+         return key;
+        
+		} 
+		
+	   
+		
+	</script>
+	
+	</body>	
+	
+</html>
+teclado.html
+Mostrando teclado.html.
